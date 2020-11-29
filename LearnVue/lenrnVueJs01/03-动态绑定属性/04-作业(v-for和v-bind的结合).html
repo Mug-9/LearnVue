@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .clickChange {
+        color: red;
+      }
+    </style>
+  </head>
+  <!-- 作业需求： 点击列表中的哪一项，该项文字变成红色-->
+  <body>
+    <div id="app">
+      <ul>
+        <li
+          v-for="(item, index) in movies"
+          v-on:click="IsClick(index)"
+          :class="getClasses(index)"
+        >
+          {{item}}
+        </li>
+      </ul>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'hello Vue',
+          movies: ['海王', '绿巨人', 'Iron Man', '雷神'],
+          isClick: 0,
+        },
+        methods: {
+          getClasses: function (index) {
+            return { clickChange: this.isClick == index }
+          },
+          IsClick: function (index) {
+            this.isClick = index
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
