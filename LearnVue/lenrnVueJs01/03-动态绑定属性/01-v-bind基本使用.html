@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <img :src="imgUrl" alt="" />
+      <a :href="baiduUrl">百度</a>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'hello Vue',
+          imgUrl:
+            'https://wx4.sinaimg.cn/mw690/0083TyOJly1gl5vrpaevzj318g0p0tqv.jpg',
+          baiduUrl: 'http://www.baidu.com',
+        },
+      })
+    </script>
+  </body>
+</html>
