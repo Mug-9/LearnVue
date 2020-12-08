@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">{{message}}</div>
+
+    <!-- * 加入module代表这个js作用域是局部的，外部js无法应用内部的变量和方法 -->
+    <!-- * 如果想要应用就在此js中做导出，在外部做导入 -->
+    <script src="aaa.js" type="module"></script>
+    <script src="bbb.js" type="module"></script>
+  </body>
+</html>
