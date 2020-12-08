@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+      <!--! 改变默认值 -->
+      <cpn><i>abc</i></cpn>
+      <!--! 多个值会共同替换 -->
+      <cpn>
+        <i>abcd</i>
+        <h2>1234</h2>
+      </cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <h2>我是组件</h2>
+        <!--! 默认slot中填充button -->
+        <slot><button>按钮</button></slot>
+      </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'hello Vue',
+        },
+        components: {
+          cpn: {
+            template: '#cpn',
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

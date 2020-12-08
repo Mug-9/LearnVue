@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!--! 方法的作用域，主要看活动在谁的模板下，这里的isShow都是app下的isShow  -->
+      <h2 v-show="isShow">显示</h2>
+      <cpn v-show="isShow">cpn显示</cpn>
+    </div>
+
+    <template id="cpn">
+      <h2 v-show="isShow">显示</h2>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'hello Vue',
+        },
+      })
+    </script>
+  </body>
+</html>

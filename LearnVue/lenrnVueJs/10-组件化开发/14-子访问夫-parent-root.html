@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+    </div>
+    <template id="cpn">
+      <div>
+        我是子组件
+        <button @click="btnclick">按钮</button>
+      </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'hello Vue',
+        },
+        components: {
+          cpn: {
+            template: '#cpn',
+            data() {
+              return {
+                name: '子组件',
+              }
+            },
+            methods: {
+              btnclick() {
+                console.log(this.$parent)
+              },
+            },
+          },
+        },
+        methods: {
+          btnclick() {
+            console.log(this.$children[0].name)
+            console.log(this.$refs.aaa.name)
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
