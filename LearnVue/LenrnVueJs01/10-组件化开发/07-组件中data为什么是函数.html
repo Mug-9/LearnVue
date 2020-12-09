@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+      <cpn></cpn>
+      <cpn></cpn>
+      <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <h2>当前计数： {{count}}</h2>
+        <button @click="decrement">-</button>
+        <button @click="increment">+</button>
+      </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'hello Vue',
+        },
+        components: {
+          cpn: {
+            template: '#cpn',
+            data() {
+              // 当多个组件实例存在时，return一个新的数据对象，可以保证组件实例之间不会相互影响
+              return {
+                count: 0,
+              }
+            },
+            methods: {
+              decrement() {
+                this.count--
+              },
+              increment() {
+                this.count++
+              },
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
