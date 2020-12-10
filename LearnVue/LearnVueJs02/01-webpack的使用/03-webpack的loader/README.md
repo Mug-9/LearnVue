@@ -10,6 +10,8 @@
 
 `npm install --save-dev url-loader` 解析url文件
 
+`npm install --save-dev babel-loader@7 babel-core babel-preset-es2015` 转换`ES6`语法
+
 来进行安装
 
 ## 2 配置 `webpack-config.js`
@@ -139,4 +141,27 @@ require('./css/special.less')`
         use: ['style-loader', 'css-loader']
       },
 ```
+
+### 4.4 babel配置
+
+`babel`将`ES6`的语法转成`ES5`的语法
+
+使用`npm install --save-dev babel-loader@7 babel-core babel-preset-es2015 `来安装`babel`
+
+在配置文件中加入
+
+```js
+{
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015']
+          }
+        }
+      }
+```
+
+`exclude`: 只需要打包`src`中的`js`，把`node_modules`和`bower_components`排除
 
