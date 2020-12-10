@@ -74,7 +74,7 @@ plugins: [
   },
 ```
 
-使用`serve` 来启动`webpack-dev-server`
+使用`serve` 来启动
 
 ### 2.4 使用
 
