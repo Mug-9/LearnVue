@@ -85,13 +85,6 @@ module.exports = {
       template: 'index.html'
     }),
   ],
-  // devServer: {
-  //   contentBase: './dist',
-  //   // inline : 是否实时监听
-  //   inline: true,
-  //   // 页面自动打开
-  //   open: true
-  // }
 }
 ```
 
@@ -153,5 +146,12 @@ module.exports = WebpackMerge(BaseConfig, {
     // img会找到编译后存储在dist中的图片
     //publicPath: 'dist/'
   },
+```
+
+由于原先的配置文件被删除，所以写的`script`脚本不能定位到新的配置文件，所以需要在`script`中添加
+
+```js
+"build": "webpack --config ./build/prod.config.js",
+"dev": "webpack serve --config ./build/dev.config.js"
 ```
 

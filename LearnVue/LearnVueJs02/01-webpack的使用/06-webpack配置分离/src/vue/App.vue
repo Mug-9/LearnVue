@@ -20,6 +20,6 @@ export default {
   color: green;
 }
 .title2 {
-  color: blue;
+  color: rgb(10, 10, 104);
 }
 </style>
