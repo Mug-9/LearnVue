@@ -1,4 +1,5 @@
 const path = require('path')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   // 入口
@@ -16,7 +17,7 @@ module.exports = {
         test: /\.css$/,
         // css-loader只负责加载，不负责解析
         // style-loader负责将样式添加到DOM
-        use: ['style-loader', 'css-loader']
+        use: ['vue-style-loader', 'style-loader', 'css-loader']
       }, {
         // test 目标文件
         test: /\.less$/,
@@ -49,12 +50,21 @@ module.exports = {
             presets: ['es2015']
           }
         }
+      }, {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader'
+        }
       }
     ]
   },
   resolve: {
+    extensions: ['.css', '.js', '.vue'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
-  }
+  },
+  plugins: [
+    new VueLoaderPlugin()
+  ]
 }
