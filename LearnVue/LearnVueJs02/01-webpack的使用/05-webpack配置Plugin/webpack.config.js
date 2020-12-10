@@ -1,5 +1,6 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     // img会找到编译后存储在dist中的图片
-    publicPath: 'dist/'
+    //publicPath: 'dist/'
   },
   module: {
     rules: [
@@ -67,6 +68,16 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new webpack.BannerPlugin('最终版权归Mug-9所有')
-  ]
+    new webpack.BannerPlugin('最终版权归Mug-9所有'),
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    }),
+  ],
+  devServer: {
+    contentBase: './dist',
+    // inline : 是否实时监听
+    inline: true,
+    // 页面自动打开
+    open: true
+  }
 }
