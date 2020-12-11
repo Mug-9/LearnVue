@@ -56,9 +56,17 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 在初始化的目录下使用：`vue create my-project `
 
+- `please pick a preset` 选择配置`default(babel, eslint)`默认选择和`Manually select features`手动选择
+- 选择`Manually select features`可以选择配置，按空格勾选和取消
+- `dedicated config file or package.json`选择把配置文件独立还是放到`package.json`
+- `save as a futrue project` 把配置保存成一个项目，以供后来的项目使用
+- 选择保存，`save preset as: ` 设置保存配置项目的名字
+
 ## 3 项目分析
 
-### `package.json`
+### `Vue-CLI 2.x`
+
+#### `package.json`
 
 `package.json`中，
 
@@ -71,26 +79,61 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   },
 ```
 
-#### `build`
+##### `build`
 
 `npm run build`使用`node`打包项目
 
-#### `dev`
+##### `dev`
 
 通过`webpack-dev-server`来搭建本地服务器
 
-### `.editorconfig`
+#### `.editorconfig`
 
 设置编程风格
 
-### `.eslintignore`
+#### `.eslintignore`
 
 `eslint`忽略某些文件
 
-### `.gitignore`
+#### `.gitignore`
 
 `git`上传时忽略某些文件
 
-### `package.json`和`package-lock.json`
+#### `package.json`和`package-lock.json`
 
 因为`package.json`中的版本是由`^`来安装，所以可能会导致实际安装的版本与`package.json`中的版本不同， `package-lock.json`所做的就是在它们之间做一个映射
+
+### `Vue-CLI 3.x`
+
+#### `public`
+
+原先`Vue-CLI 2.x`中`static`的替代
+
+#### `src`
+
+源代码
+
+####  `browerslistrc`
+
+浏览器配置
+
+#### `.gitignore`
+
+`git`忽略文件
+
+#### `babel.config.js`
+
+对`babel`的配置
+
+#### `package.json`
+
+项目依赖
+
+使用`@vue/cli-serve`来管理依赖
+
+#### `package-lock.json`
+
+跟`Vue-CLI 2.x`相同
+
+
+
