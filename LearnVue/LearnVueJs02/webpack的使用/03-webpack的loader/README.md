@@ -72,7 +72,7 @@ module.exports = {
 `require('./css/normal.css')
 require('./css/special.less')`
 
-## 4 配置
+## 4 其他配置
 
 ### 4.1 img配置
 
