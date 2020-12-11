@@ -59,3 +59,45 @@ const test = () => {
 const mul = (num1, num2) => num1 * num2
 ```
 
+### this
+
+```js
+const obj = {
+    aaa() {
+        setTimeout(function () {
+            console.log(this) //window
+        })
+
+        setTimeout(() => {
+            console.log(this) // obj对象
+        })
+    },
+}
+```
+
+箭头函数中的this，是向外层作用域，一层层查找this，知道有this的定义
+
+```js
+aaa() {
+    setTimeout(function() {
+        //this = window
+        setTimeout(function() {
+            console.log(this); // window
+        })
+        setTimeout(() => {
+            console.log(this); // window
+        })
+    })
+    setTimeout(() => {
+        //this = obj
+        setTimeout(function() {
+            console.log(this); //window
+        })
+        setTimeout(() => {
+            console.log(this); // obj
+        })
+    })
+}
+```
+
+使用`function(){}`的`this`一直是`window`，使用箭头的`this`是最近的上面一层的`this`
