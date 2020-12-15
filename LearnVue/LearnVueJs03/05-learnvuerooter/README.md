@@ -318,6 +318,8 @@ export default new Router({
 
 在组件中可以使用`this.route.params.userId`
 
+是`route`不是`router`
+
 注意这个`userId`必须与路由中配置的`path`相同
 
 `router/index.js`
@@ -466,4 +468,144 @@ const Home = () => import('..//components/Home')
 ```
 
 在`profile.vue`页面使用`route.query`可以来取出参数
+
+#### `onclick`传递
+
+```js
+<button @click="userClick">用户</button>
+<button @click="profileClick">档案</button>
+```
+
+```js
+userClick () {
+    this.$router.replace('/user/' + this.userId)
+},
+    profileClick () {
+        this.$router.push({
+            path: '/profile',
+            query: {
+                name: 'kobe',
+                age: 18
+            }
+        })
+    }
+```
+
+#### `router`和`route`
+
+`route`是当前处于活跃的路由
+
+`router`是`router`导出的一个对象
+
+所有组件都继承自`Vue`原型
+
+# 导航守卫
+
+可以监听页面的跳转，并在页面跳转期间做一些事情
+
+## 生命周期函数
+
+### `create`
+
+当组件被创建时回调
+
+### `mounted`
+
+组件被创建后，组件的内容被加载时回调
+
+### `update`
+
+当页面更新时回调
+
+## 导航守卫
+
+重写`befroeEach`函数，`beforeEach`就是监听路由之间的跳转
+
+```js
+router.beforeEach((to, from, next) => {
+    //从from路由 跳到to 路由
+  document.title = to.meta.title
+  next()
+})
+```
+
+`next` 可以使跳转可以进行下去，可以使用`next('/')`来控制跳转页面
+
+每个路由的`meta`属性，可以给路由添加参数
+
+但是当有嵌套路由存在时，使用`meta`属性找不到`title`，
+
+可以使用`matched`属性
+
+```js
+router.beforeEach((to, from, next) => {
+  document.title = to.matched[0].meta.title
+  next()
+})
+```
+
+### 前置守卫
+
+`beforeEach`在跳转前回调
+
+### 后置守卫
+
+`afterEach`在跳转后 回调
+
+### 路由独享守卫
+
+在路由内定义的守卫，只有在路由活跃时才起作用的守卫函数
+
+### 组件内守卫
+
+在组件内定义的守卫
+
+#### `keep-alive`
+
+`keep-alive`时`Vue`内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染
+
+需求： `home`页面显示`message`组件，在页面跳转后，`home`页面显示的还是`message`组件
+
+- 用`keep-alive`把`router-view`包裹住
+- 在`router/index.js`中取消`home`的缺省值
+- 在`Home.vue`，`data`中添加`path`路径，设置默认路径
+
+- 在`Home.vue`中，实现`activated()`方法，实现当页面处于`actived`时，跳转至`path`
+- 在`Home.vue`中，实现组件内守卫，实现`beforeRouteLeave`方法，在离开页面时记录当前的`path`
+
+```js
+<keep-alive>
+    <router-view />
+</keep-alive>
+```
+
+```js
+data () {
+    return {
+      path: '/home/news',
+    }
+  },
+  activated () {
+    this.$router.push(this.path)
+  },
+  beforeRouteLeave (to, from, next) {
+    this.path = this.$route.path
+    next()
+  }
+```
+
+#### `activated`和`deactivated`
+
+`activated`和`deactivated`函数，只有在`keep-alive`里面才有效
+
+#### `keep-alive`重要属性
+
+- include  - 字符串或正则表达式，只有匹配的组件会被缓存
+- exclude - 字符串或正则表达式，任何匹配的组件都不会被缓存
+
+```js
+<keep-alive exclude="Profile">
+    <router-view />
+</keep-alive>
+```
 
