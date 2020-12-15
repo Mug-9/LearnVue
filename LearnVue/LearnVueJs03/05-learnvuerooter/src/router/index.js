@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../components/Home'
-import About from '../components/About'
-import User from '../components/User'
 
 Vue.use(Router)
 
@@ -14,7 +11,21 @@ export default new Router({
     },
     {
       path: '/home',
-      component: () => import('..//components/Home')
+      component: () => import('..//components/Home'),
+      children: [
+        {
+          path: '',
+          redirect: 'news'
+        },
+        {
+          path: 'news',
+          component: () => import('..//components/HomeNews')
+        },
+        {
+          path: 'message',
+          component: () => import('..//components/HomeMessage')
+        }
+      ]
     },
     {
       path: '/about',
@@ -23,6 +34,10 @@ export default new Router({
     {
       path: '/user/:userId',
       component: () => import('..//components/User')
+    },
+    {
+      path: '/profile',
+      component: () => import('..//components/Profile')
     }
   ],
   mode: 'history',

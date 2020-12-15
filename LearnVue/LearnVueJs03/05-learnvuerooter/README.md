@@ -378,3 +378,92 @@ export default {
 const Home = () => import('..//components/Home')
 ```
 
+### 嵌套路由
+
+通过`/home/news`和`/home/message`访问不同的页面
+
+#### `children`
+
+在`router/index.js`中，在`home`中，加上`children`属性
+
+```js
+{
+      path: '/home',
+      component: () => import('..//components/Home'),
+      children: [
+        {
+          path: 'news',
+          component: () => import('..//components/HomeNews')
+        },
+        {
+          path: 'message',
+          component: () => import('..//components/HomeMessage')
+        }
+      ]
+    },
+```
+
+#### 子路由的显示
+
+在`/components/Home.vue`中，加上子路由的显示与子路由的跳转
+
+```js
+<div>
+    我是首页
+    <h2>我是首页内容</h2>
+    <router-link to="/home/news">新闻</router-link>
+    <router-link to="/home/message">消息</router-link>
+    <router-view></router-view>
+  </div>
+```
+
+注意：`to`属性，必须要加完整的路径，否则会跳转错误
+
+#### 子路由默认值
+
+跟上面的默认值类似
+
+```js
+{
+    path: '',
+        redirect: 'news'
+},
+```
+
+### 路由之间传递参数
+
+#### `params`方式
+
+- 配置路由格式： `/router/:id`
+- 传递方式： 在`path`后面跟上对应的值
+- 传递后形成的路径: `/router/123`, `/router/abc`
+- 使用`this.$params.对应值`，就可以取得传递的值
+
+#### `query`方式
+
+- 配置路由格式: `/router` ，普通配置
+- 传递方式： 对象中使用`query`的`key`作为传递方式
+- 传递后形成的路径: `/router?id=123`, `/router?id=abc`
+
+#### 使用query传递
+
+在router-link中使用对象来传递
+
+```js
+<router-link :to="{ path: '/profile', query: { name: '123', age: 12 } }"
+      >档案</router-link
+```
+
+`:to`，使用`v-bind`来传递一个对象，在这个对象中使用一个`query`对象来传递参数
+
+#### 使用`query`取出
+
+```js
+<div>
+    <h2>我是profile组件</h2>
+<h2>{{ $route.query.name }}</h2>
+</div>
+```
+
+在`profile.vue`页面使用`route.query`可以来取出参数
+
