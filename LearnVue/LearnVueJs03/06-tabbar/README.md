@@ -183,3 +183,41 @@ export default {
 
 ```
 
+### 别名
+
+在`build/webpack.base.conf.js`中的`alias`，可以配置别名
+
+```js
+alias: {
+      '@': resolve('src'),
+      'assets': resolve('@/assets'),
+      'components': resolve('@/components'),
+      'views': resolve('@/views'),
+}
+```
+
+`cli`版本过低时，不能用`@`来代替`src`
+
+```js
+alias: {
+      '@': resolve('src'),
+      'assets': resolve('src/assets'),
+      'components': resolve('src/components'),
+      'views': resolve('src/views'),
+}
+```
+
+在使用时
+
+`import`可以直接使用
+
+```js
+import TabBar from 'components/tabbar/TabBar.vue'
+```
+
+使用`src`时需要加上`~`
+
+```js
+<img src="~assets/img/tabbar/Home.svg" alt="" slot="item-icon" />
+```
+

@@ -1,9 +1,9 @@
 <template>
   <tab-bar>
     <tab-bar-item path="/home" activeColor="blue">
-      <img src="../assets/img/tabbar/Home.svg" alt="" slot="item-icon" />
+      <img src="~assets/img/tabbar/Home.svg" alt="" slot="item-icon" />
       <img
-        src="../assets/img/tabbar/Home-active.svg"
+        src="~assets/img/tabbar/Home-active.svg"
         alt=""
         slot="item-icon-active"
       />
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import TabBar from './tabbar/TabBar.vue'
+import TabBar from 'components/tabbar/TabBar.vue'
 import TabBarItem from './tabbar/TabBarItem.vue'
 export default {
   name: "MainTabBar",
