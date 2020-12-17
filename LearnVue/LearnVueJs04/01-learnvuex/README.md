@@ -90,6 +90,8 @@ state: {
 
 ### 修改`state`
 
+![状态管理](https://upload-images.jianshu.io/upload_images/16550832-20d0ad3c60a99111.png?imageMogr2/auto-orient/strip|imageView2/2/w/701/format/webp)
+
 ```mermaid
 graph BT;
 	Backend-API --> Actions((Actions))
