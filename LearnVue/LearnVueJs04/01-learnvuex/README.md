@@ -557,3 +557,18 @@ asyncUpdataName () {
 
 只有在模块中的`context`才包含根和模块本身的属性
 
+## `Vue-store`目录结构
+
+`vue-store`推荐目录结构
+
+```
+- store
+	- modules
+		- moduleA.js
+	- actions.js
+	- getters.js
+	- index.js
+	- mutations.js
+	- mutations-types.js
+```
+
