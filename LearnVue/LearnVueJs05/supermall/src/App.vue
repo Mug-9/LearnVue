@@ -1,10 +1,18 @@
 <template>
   <div id="app">
-    <h2>"hello world"</h2>
-    <button>按钮sadg</button>
+    <router-view></router-view>
+    <main-tab-bar />
   </div>
 </template>
 
-<style>
-@import './assets/css/base.css';
+<script>
+import MainTabBar from 'content/MainTabbar/MainTabBar'
+export default {
+  name: 'App',
+  components: { MainTabBar },
+}
+</script >
+
+  <style>
+@import 'assets/css/base.css';
 </style>

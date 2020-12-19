@@ -52,3 +52,83 @@ body {//使用变量
 }
 ```
 
+## 配置
+
+### 别名
+
+创建`vue.config.js`
+
+```js
+const path = require('path')
+
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
+
+module.exports = {
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': resolve('src'),
+        'assets': resolve('./src/assets'),
+        'commons': resolve('./src/commons'),
+        'components': resolve('./src/components'),
+        'common': resolve('./src/components/common'),
+        'content': resolve('./src/components/content'),
+        'views': resolve('./src/views'),
+      }
+    },
+  }
+}
+```
+
+### `.editconfig`
+
+添加`editconfig`，配置项目的编码风格
+
+```js
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+```
+
+## 错误与修改
+
+在`cli3.x`中，淘汰了`slot`，改用`v-slot`，所以在我们的`maintagbar`中需要将`slot`改成`v-slot`，而`v-slot`必须写在`template`中，我们我们的最终代码是
+
+```js
+<tab-bar-item path="/home">
+      <template #item-icon> // 相当于slot中的slot="item-icon"
+        <img src="~assets/img/tabbar/Home.svg" alt="Home" />
+      </template> //slot 组件必须包裹在template中
+      <template #item-icon-active>
+        <img src="~assets/img/tabbar/Home-active.svg" alt="Home" />
+      </template>
+      <template #item-text>
+        <div slot="item-text">首页</div>
+      </template>
+    </tab-bar-item>
+```
+
+修改了`v-slot`以后，发现图标并没有按照预定的样式显示，这时因为`vue`的规范，未在虚拟`dom`中渲染的元素无法修改样式,`img`一开始并不存在在`slot`样式中，所以无法修改样式，
+
+解决方案：
+
+- 去掉`style`标签中的`scoped`属性
+- 使用`:deep()`
+
+```js
+.tab-bar-item:deep(img) {
+  width: 24px;
+  height: 24px;
+  margin-top: 3px;
+  vertical-align: middle;
+}
+```
+

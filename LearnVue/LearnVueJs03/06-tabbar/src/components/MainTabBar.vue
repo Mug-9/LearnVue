@@ -10,27 +10,27 @@
       <div slot="item-text">首页</div>
     </tab-bar-item>
     <tab-bar-item path="/category" activeColor="blue">
-      <img src="../assets/img/tabbar/Option.svg" alt="" slot="item-icon" />
+      <img src="~assets/img/tabbar/Option.svg" alt="" slot="item-icon" />
       <img
-        src="../assets/img/tabbar/Option-active.svg"
+        src="~assets/img/tabbar/Option-active.svg"
         alt=""
         slot="item-icon-active"
       />
       <div slot="item-text">分类</div>
     </tab-bar-item>
     <tab-bar-item path="/cart" activeColor="blue">
-      <img src="../assets/img/tabbar/Basket.svg" alt="" slot="item-icon" />
+      <img src="~assets/img/tabbar/Basket.svg" alt="" slot="item-icon" />
       <img
-        src="../assets/img/tabbar/Basket-active.svg"
+        src="~assets/img/tabbar/Basket-active.svg"
         alt=""
         slot="item-icon-active"
       />
       <div slot="item-text">购物车</div>
     </tab-bar-item>
     <tab-bar-item path="/profile" activeColor="blue">
-      <img src="../assets/img/tabbar/Avatar.svg" alt="" slot="item-icon" />
+      <img src="~assets/img/tabbar/Avatar.svg" alt="" slot="item-icon" />
       <img
-        src="../assets/img/tabbar/Avatar-active.svg"
+        src="~assets/img/tabbar/Avatar-active.svg"
         alt=""
         slot="item-icon-active"
       />
