@@ -5,6 +5,7 @@
         <h2>购物街</h2>
       </template>
     </nav-bar>
+    <ElButton>你好</ElButton>
   </div>
 </template>
 
