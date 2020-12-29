@@ -90,7 +90,75 @@ axios({
 
 写两个`axios`，只发送一个`get`
 
-#### 发送数据参数
+### 发送参数
+
+#### 封装`request`类
+
+```js
+import axios from 'axios'
+import qs from 'qs'
+
+export function request (config) {
+  const instance = axios.create({
+    baseURL: 'http://192.168.0.105:8888/api/',
+    timeout: 5000,
+  })
+
+  instance.interceptors.request.use(config => {
+    console.log(config)
+    if (config.method == "POST") {
+      config.data = qs.stringify(config.data)
+    }
+    return config
+  }, err => {
+    console.log(err)
+  })
+
+  instance.interceptors.response.use(res => {
+    return res.data
+  }, err => {
+    console.log(err)
+  })
+
+  return instance(config)
+}
+```
+
+#### `GET` 请求
+
+```js
+import { request } from './request'
+
+//传参传入字典
+export function getOnlineNumbers (data) {
+  return request({
+    method: 'get',
+    url: 'online_number',
+    params: data,
+  })
+}
+
+```
+
+#### `POST`请求
+
+```js
+import { request } from './request'
+
+//传参传入formData
+export function formLogin (config) {
+  return request({
+    method: 'post',
+    url: 'login',
+    data: config,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
+}
+```
+
+#### 朴素写法
 
 ```js
 axios({
@@ -104,6 +172,8 @@ axios({
   console.log(res)
 })
 ```
+
+### 并发
 
 #### `axios` 并发
 

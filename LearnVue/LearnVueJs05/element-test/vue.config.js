@@ -15,8 +15,9 @@ module.exports = {
         'content': resolve('./src/components/content'),
         'views': resolve('./src/views'),
         'network': resolve('./src/network'),
-
       }
     },
-  }
+  },
+
+  assetsDir: 'static'
 }
